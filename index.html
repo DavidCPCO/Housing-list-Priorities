@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#183447">
+  <title>Our home priorities</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar"><div class="shell topbar-inner"><div class="brand"><span class="brand-mark">⌂</span><span>Our home priorities</span></div><span class="tag">A clearer way to choose a home</span></div></header>
+  <main class="shell">
+    <section id="setup" class="panel setup">
+      <span class="eyebrow">GET STARTED</span><h1>Make room for what matters.</h1>
+      <p>Start a shared list, then send the invite link to your partner. Your priorities and house ratings update for both of you.</p>
+      <div class="setup-actions"><button id="create-room" class="button primary">Create our shared list</button><button id="join-room" class="button secondary">Join with a code</button></div>
+      <form id="join-form" class="inline-form hidden"><label for="room-code">Shared code</label><input id="room-code" placeholder="Paste the code or invite link" autocomplete="off"><button class="button primary">Join</button></form>
+      <p id="setup-error" class="error" role="alert"></p>
+    </section>
+    <section id="workspace" class="hidden">
+      <div class="intro"><div><span class="eyebrow">YOUR SHARED WORKSPACE</span><h1>Find your common ground.</h1><p>Score what matters to each of you, then compare homes against the combined list.</p></div><div class="share-box"><span>INVITE YOUR PARTNER</span><button id="copy-link" class="button secondary">Copy invite link</button><small id="room-label"></small></div></div>
+      <div class="controls"><div class="role-control"><label for="role">I’m editing as</label><select id="role"><option value="david">David</option><option value="partner">Partner</option></select></div><nav class="tabs" aria-label="Views"><button data-view="mine" class="active">My priorities</button><button data-view="master">Together</button><button data-view="houses">Compare homes</button></nav></div>
+      <section id="mine" class="view"><div class="section-heading"><div><span class="eyebrow">01 / PERSONAL LIST</span><h2>My priorities</h2><p>Score each priority from 0 to 10. A blank score means it has not been rated yet.</p></div></div>
+        <form id="priority-form" class="panel form-card"><div class="form-grid"><label>Choose a priority already listed<select id="existing-priority"><option value="">Add a new priority instead</option></select></label><label>New priority<input id="priority-name" maxlength="90" placeholder="e.g. Quiet street"></label><label>Importance (0–10)<input id="priority-score" type="number" min="0" max="10" step="1" required placeholder="0–10"></label><label>Type<select id="priority-type"><option>Location</option><option>Property</option><option>House</option><option>Financial</option><option>Other</option></select></label></div><div class="form-bottom"><label class="check"><input id="priority-dealbreaker" type="checkbox"> Dealbreaker for me</label><button class="button primary">Add to my list</button></div><p id="priority-error" class="error" role="alert"></p></form>
+        <div id="mine-list" class="list"></div>
+      </section>
+      <section id="master" class="view hidden"><div class="section-heading"><div><span class="eyebrow">02 / SHARED PICTURE</span><h2>What matters together</h2><p>Combined score is David + Partner. The difference highlights priorities worth discussing.</p></div></div><div class="table-wrap panel"><table><thead><tr><th>Priority</th><th>David</th><th>Partner</th><th>Combined</th><th>Difference</th><th>Dealbreaker</th></tr></thead><tbody id="master-body"></tbody></table></div></section>
+      <section id="houses" class="view hidden"><div class="section-heading"><div><span class="eyebrow">03 / HOUSE COMPARISON</span><h2>Compare the contenders</h2><p>Rate each home from 0 to 10 against your shared priorities. Unrated items count as zero in the match score.</p></div><form id="house-form" class="add-house"><input id="house-name" maxlength="100" required placeholder="Address or nickname"><button class="button primary">Add home</button></form></div><div id="house-summary" class="house-cards"></div><div id="house-table" class="table-wrap panel"></div></section>
+      <p id="status" class="status" role="status"></p>
+    </section>
+  </main>
+  <footer class="shell footer">Made for a conversation, not a verdict. Visit a property and use your judgment alongside the score.</footer>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // The room ID is a random 128-bit invite code. Anyone with the link may edit.
+    match /rooms/{roomId} {
+      allow get, create: if request.auth != null && roomId.matches('[a-f0-9]{32}');
+      allow list, update, delete: if false;
+      match /priorities/{priorityId} {
+        allow read, write: if request.auth != null && roomId.matches('[a-f0-9]{32}') && exists(/databases/$(database)/documents/rooms/$(roomId));
+      }
+      match /houses/{houseId} {
+        allow read, write: if request.auth != null && roomId.matches('[a-f0-9]{32}') && exists(/databases/$(database)/documents/rooms/$(roomId));
+      }
+    }
+  }
+}
